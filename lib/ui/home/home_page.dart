@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_todo/ui/admin/create_todo_page.dart';
 import 'package:my_todo/ui/home/home_list_todo.dart';
 
 class HomePage extends StatelessWidget {
@@ -36,17 +37,36 @@ class HomePage extends StatelessWidget {
           )
         ],
       ),
-      body: HeadSection(title: title),
+      body: HeadSection(title: title, child: const HomeListTodo()),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) {
+                return const CreateTodoPage(
+                  title: 'Create Todo',
+                );
+              },
+            ),
+          );
+        },
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(16))),
+        elevation: 5,
+        highlightElevation: 10,
+      ),
     );
   }
 }
 
 class HeadSection extends StatelessWidget {
   final String title;
-
+  final Widget child;
   const HeadSection({
     Key? key,
     required this.title,
+    required this.child,
   }) : super(key: key);
 
   @override
@@ -66,7 +86,7 @@ class HeadSection extends StatelessWidget {
                 ?.copyWith(color: Colors.black),
           ),
           const SizedBox(height: 16.0),
-          const Expanded(child: HomeListTodo())
+          Expanded(child: child)
         ],
       ),
     );

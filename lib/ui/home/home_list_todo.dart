@@ -34,7 +34,9 @@ class _HomeListTodoState extends State<HomeListTodo> {
     return ListView.builder(
         itemCount: todos.length,
         itemBuilder: (context, index) {
-          return HomeListTodoItem(todo: todos[index],);
+          return HomeListTodoItem(
+            todo: todos[index],
+          );
         });
   }
 }

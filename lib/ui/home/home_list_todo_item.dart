@@ -210,5 +210,4 @@ class HomeListTodoItem extends StatelessWidget {
           );
         });
   }
-
 }
